@@ -1,5 +1,5 @@
 import { Link, Outlet } from 'react-router-dom';
-import Search from './Search';
+import Search from './../Search';
 import './Layout.css';
 
 const Layout = ({ loggedInUser }) => {

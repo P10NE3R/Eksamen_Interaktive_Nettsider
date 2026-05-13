@@ -1,10 +1,20 @@
 import { useState, useEffect } from 'react';
-import client from '../../helpers/sanityClient';
+import client from '../../../helpers/sanityClient';
 
 export default function Frontpage() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+
+
+  //Når denne siden blir loadet, så spørres databasen om ordre og aktive lån for å vise frem to tall
+  
+  //Spørringen kunne heller bare ha spurt etter de spesifike tallene. 
+  // hentet fra https://www.sanity.io/docs/content-lake/query-cheat-sheet
+
+
+  //Denne løsningen sparer bredbånd og serverkapasitet for der react rammeværket kjører
 
   useEffect(() => {
     const fetchSummary = async () => {
@@ -22,9 +32,19 @@ export default function Frontpage() {
     fetchSummary();
   }, []);
 
+  //Spørringen disse tallen baserer seg på er ineffektiv. Her er det lurere å stille spørsmål til databasen Så disse 
+  
+  
+  //Teller opp alle aktive ordere
   const activeOrders = orders.length;
-  const booksBorrowed = orders.reduce((count, order) => count + (order.books?.length || 0), 0);
+  // "activeOrders": count(*[_type == "order"]),
 
+  //Teller opp alle bøker som nå er lånt 
+  const booksBorrowed = orders.reduce((count, order) => count + (order.books?.length || 0), 0);
+  // "booksBorrowed": sum(*[_type == "order"].count(books))
+  
+  
+  
   return (
     <div>
       <h1>Welcome to the Library System</h1>

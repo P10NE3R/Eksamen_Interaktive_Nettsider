@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import client from '../../helpers/sanityClient';
+import client from '../../../helpers/sanityClient';
 
 const NewOrder = () => {
   const navigate = useNavigate();
