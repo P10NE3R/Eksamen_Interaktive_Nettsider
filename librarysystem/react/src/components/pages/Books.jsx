@@ -9,6 +9,9 @@ const Books = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+    //Kanksje begrenset spørring her, også hentet inne større mengder for valgt sjanger
+    //Serverside velging av bøker 
+
   useEffect(() => {
     const fetchData = async () => {
       try {

@@ -14,7 +14,7 @@ export default function Frontpage() {
   // hentet fra https://www.sanity.io/docs/content-lake/query-cheat-sheet
 
 
-  //Denne løsningen sparer bredbånd og serverkapasitet for der react rammeværket kjører
+  //Den Alternative løsningen sparer bredbånd og serverkapasitet for der react rammeværket kjører
 
   useEffect(() => {
     const fetchSummary = async () => {
@@ -22,6 +22,7 @@ export default function Frontpage() {
         const query = `*[_type == "order"]{books}`;
         const result = await client.fetch(query);
         setOrders(result);
+        console.log("front page", result)
       } catch (err) {
         setError(err.message);
       } finally {
@@ -41,7 +42,8 @@ export default function Frontpage() {
 
   //Teller opp alle bøker som nå er lånt 
   const booksBorrowed = orders.reduce((count, order) => count + (order.books?.length || 0), 0);
-  // "booksBorrowed": sum(*[_type == "order"].count(books))
+  // "booksBorrowed": sum(*[_type == "order"].count(books)) 
+  // På den aktive spørringen så må det kanskje med en dato beregning for å se om orderen er "aktiv" siden det er det som etterspørres
   
   
   
