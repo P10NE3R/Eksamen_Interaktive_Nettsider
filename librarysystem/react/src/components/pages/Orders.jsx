@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import client from '../../helpers/sanityClient';
+import client from '../../../helpers/sanityClient';
 
 const Orders = ({ loggedInUser }) => {
   const [orders, setOrders] = useState([]);

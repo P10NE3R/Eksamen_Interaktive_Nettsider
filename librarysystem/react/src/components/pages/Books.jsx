@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import client from '../../helpers/sanityClient';
+import client from '../../../helpers/sanityClient';
 
 const Books = () => {
   const [books, setBooks] = useState([]);
@@ -8,6 +8,9 @@ const Books = () => {
   const [selectedGenre, setSelectedGenre] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+    //Kanksje begrenset spørring her, også hentet inne større mengder for valgt sjanger
+    //Serverside velging av bøker 
 
   useEffect(() => {
     const fetchData = async () => {
